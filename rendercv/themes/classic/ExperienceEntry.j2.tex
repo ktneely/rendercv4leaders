@@ -11,8 +11,13 @@
 \begin{twocolentry}{
     <<date_and_location_strings|join("\n\n")>>
 }
-    \textbf{<<entry.company>>}, <<entry.position>>
-    ((* for item in entry.highlights *))
+\textbf{<<entry.company>>}, <<entry.position>>
+
+% Create a responsibilities section if it exists
+((* if entry.responsibilities *))
+
+    \textit{\newline Responsibilities}
+    ((* for item in entry.responsibilities *))
         ((* if loop.first *))
     \begin{highlights}
         ((* endif *))
@@ -21,11 +26,61 @@
     \end{highlights}
         ((* endif *))
     ((* endfor *))
+((* endif *))
+
+% Create an accomplishments section if it exists
+((* if entry.accomplishments *))
+    \textit{Accomplishments}
+    ((* for item in entry.accomplishments *))
+        ((* if loop.first *))
+    \begin{highlights}
+        ((* endif *))
+        \item <<item>>
+        ((* if loop.last *))
+    \end{highlights}
+        ((* endif *))
+    ((* endfor *))
+((* endif *))
+
+% Give Highlights a heading if one of the above sections exists
+((* if entry.highlights and (entry.responsibilities or entry.accomplishments) *))
+\textit{Highlights}
+((* endif *))
+((* for item in entry.highlights *))
+    ((* if loop.first *))
+\begin{highlights}
+    ((* endif *))
+    \item <<item>>
+    ((* if loop.last *))
+\end{highlights}
+    ((* endif *))
+((* endfor *))
 \end{twocolentry}
+
+
 ((* else *))
 \begin{onecolentry}
-    \textbf{<<entry.company>>}, <<entry.position>>
-    ((* for item in entry.highlights *))
+\textbf{<<entry.company>>}, <<entry.position>>
+
+% Create a responsibilities section if it exists
+((* if entry.responsibilities *))
+    
+    \textit{\newline Responsibilities}
+    ((* for item in entry.responsibilities *))
+        ((* if loop.first *))
+    \begin{highlights}
+        ((* endif *))
+        \item <<item>>
+        ((* if loop.last *))
+    \end{highlights}   
+        ((* endif *))
+    ((* endfor *))
+((* endif *))
+
+% Create an accomplishments section if it exists
+((* if entry.accomplishments *))
+    \textit{Accomplishments}
+    ((* for item in entry.accomplishments *))
         ((* if loop.first *))
     \begin{highlights}
         ((* endif *))
@@ -34,5 +89,21 @@
     \end{highlights}
         ((* endif *))
     ((* endfor *))
+((* endif *))
+
+% Give Highlights a heading if one of the above sections exists
+((* if entry.highlights and (entry.responsibilities or entry.accomplishments) *))
+\textit{Highlights}
+((* endif *))
+((* for item in entry.highlights *))
+    ((* if loop.first *))
+\begin{highlights}
+    ((* endif *))
+    \item <<item>>
+    ((* if loop.last *))
+\end{highlights}
+    ((* endif *))
+((* endfor *))
 \end{onecolentry}
+
 ((* endif *))

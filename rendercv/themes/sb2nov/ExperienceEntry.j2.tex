@@ -12,7 +12,7 @@
 ((* else *))
 \begin{onecolentry}
 ((* endif *))
-    \textbf{<<entry.position>>}
+    \large{\textbf{<<entry.position>>}}   % making this large helps separate experiences and provide distinction btwn sections
     
     \textit{<<entry.company>>}
 ((* if entry.date_string or entry.location *))
@@ -21,6 +21,43 @@
 \end{onecolentry}
 ((* endif *))
 
+
+((* if entry.responsibilities *))
+\textbf{Responsibilities}
+    ((* for item in entry.responsibilities *))
+        ((* if loop.first *))
+    \vspace{<<design.margins.highlights_area.top>>}
+    \begin{onecolentry}
+        \begin{highlights}
+        ((* endif *))
+            \item <<item>>
+        ((* if loop.last *))
+        \end{highlights}
+    \end{onecolentry}
+       ((* endif *))
+    ((* endfor *))
+((* endif *))
+
+((* if entry.accomplishments *))
+\textbf{Accomplishments}
+    ((* for item in entry.accomplishments *))
+        ((* if loop.first *))
+    \vspace{<<design.margins.highlights_area.top>>}
+    \begin{onecolentry}
+        \begin{highlights}
+        ((* endif *))
+            \item <<item>>
+        ((* if loop.last *))
+        \end{highlights}
+    \end{onecolentry}
+       ((* endif *))
+    ((* endfor *))
+((* endif *))
+
+% Give Highlights a heading if one of the above sections exists
+((* if entry.highlights and (entry.responsibilities or entry.accomplishments) *))
+\textit{Highlights}
+((* endif *))
 ((* for item in entry.highlights *))
     ((* if loop.first *))
 \vspace{<<design.margins.highlights_area.top>>}

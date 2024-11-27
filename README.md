@@ -11,6 +11,21 @@
 
 </div>
 
+## Theme update for Leaders and Managers
+
+This fork contains updates to v1.14, adding the "Responsibilities" and "Accomplishments" subsections for `company:` under the Experience section.  
+This allows leaders to craft their resume or CV in such a way that it highlights the breadth of their influence and impact to the organization.
+
+The following themes contain the additional subsections:
+- markdown
+- classic
+- sb2nov
+
+A non-updated theme will simply ignore the content under these subsections; omitting these sections will make the resume look like the original theme.
+Hopefully the framework will be more extensible in the future and I can add this as a pull request.
+
+## Original README continues....
+
 RenderCV allows you to create a high-quality CV as a PDF from a YAML input file. It supports Markdown syntax and gives you complete control over the $\LaTeX$ code.
 
 The primary motivation behind RenderCV is to provide a concrete framework that allows:
